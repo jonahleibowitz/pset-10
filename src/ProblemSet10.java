@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class ProblemSet10 {
 
     public static void main(String[] args) {
-        int[] numbers = {4, 2, 2, 5};
+        int[] numbers = {1, 4, 1, 5, 5, 4, 1};
        // int end = 20;
         System.out.println(Arrays.toString(fix45(numbers)));
         //(Arrays.toString(
@@ -68,11 +68,14 @@ public class ProblemSet10 {
    //////////////////////////////////////////////
     int threeCount = 0;
     int fourCount = 0;
+    int otherCount = 0;
     for(int i = 0; i < numbers.length; i++){
         if(numbers[i] == 3){
             threeCount ++;
         } else if(numbers[i] == 4){
             fourCount ++;
+        } else{
+            otherCount ++;
         } }
     //////////////////////////////////////////////
         boolean fourFirst = false;
@@ -98,19 +101,32 @@ public class ProblemSet10 {
         if(numbers == null || threeCount != fourCount || fourFirst == true || consecutive == true || end == true){
             return null; }
     //////////////////////////////////////////////
-    int[] arr = new int[numbers.length];
-    int arrIndex = 0;
-    for(int l = 0; l < numbers.length; l++){
-        if(numbers[l] != 3 && numbers[l] != 4){
-          arr[arrIndex] = numbers[l];
-          arrIndex ++;
-        } else if(numbers[l] == 3){
-            arr[arrIndex] = numbers[l];
-            arr[arrIndex+1] = 4;
-            arrIndex = arrIndex + 2;
-        } }
+        //////////////////////////////////////////////////
+        int[] arr = new int[numbers.length];
+        int[] others = new int[otherCount];
+        int otherIndex = 0;
+        for(int i = 0; i < numbers.length; i++){
+            if (numbers[i] != 3 && numbers[i] != 4){
+                others[otherIndex] = numbers[i];
+                otherIndex ++;
+            }}
+
+        for(int j = 0; j < numbers.length; j++){
+            if (numbers[j] == 3){
+                arr[j] = 3;
+                arr[j+1] = 4; }}
+
+        int newIndex = 0;
+        for(int k = 0; k < numbers.length; k++){
+            if (arr[k] == 0){
+                arr[k] = others[newIndex];
+                newIndex ++;
+            }
+        }
+
         return arr;
     }
+
 
     public static int[] fix45(int[] numbers) {
     //////////////////////////////////////////////////
@@ -158,14 +174,6 @@ public class ProblemSet10 {
     }
 
     return arr;
-    /*Plan:
-    *Rules, all numbers except 4's can move
-    * 5 must be moved after 4
-    * Make an array that is same length as numbers
-    * array with all numbers that aren't fours or fives
-    * In the new array, send fours to their original indexes and put a 5 directly after
-    * Cycle through new array, in empty indexes, insert the next number
-    * */
     }
 /*
     public boolean canBalance(int[] numbers) {
