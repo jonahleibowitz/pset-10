@@ -3,9 +3,9 @@ import java.util.Arrays;
 public class ProblemSet10 {
 
     public static void main(String[] args) {
-        int[] numbers = {1, 3, 1, 4, 4, 3, 1};
+        int[] numbers = {4, 2, 2, 5};
        // int end = 20;
-        System.out.println(Arrays.toString(fix34(numbers)));
+        System.out.println(Arrays.toString(fix45(numbers)));
         //(Arrays.toString(
     }
 
@@ -112,12 +112,62 @@ public class ProblemSet10 {
         return arr;
     }
 
+    public static int[] fix45(int[] numbers) {
+    //////////////////////////////////////////////////
+        int fourCount = 0;
+        int fiveCount = 0;
+        int otherCount = 0;
+    for(int i = 0; i < numbers.length; i++){
+            if(numbers[i] == 4){
+                fourCount ++;
+            } else if(numbers[i] == 5){
+                fiveCount ++;
+            }else{
+                otherCount ++;
+            }  }
+    //////////////////////////////////////////////////
+        boolean consecutive = false;
+    for(int k = 0; k < numbers.length-1; k++){
+            if(numbers[k] == 4 && numbers[k+1] == 4){
+                consecutive = true;
+                break; } }
+    //////////////////////////////////////////////////
+    if(numbers == null || fiveCount != fourCount || consecutive == true){
+            return null; }
+    //////////////////////////////////////////////////
+    int[] arr = new int[numbers.length];
+    int[] others = new int[otherCount];
+    int otherIndex = 0;
+    for(int i = 0; i < numbers.length; i++){
+        if (numbers[i] != 4 && numbers[i] != 5){
+            others[otherIndex] = numbers[i];
+            otherIndex ++;
+        }}
 
-/*
-    public int[] fix45(int[] numbers) {
+    for(int j = 0; j < numbers.length; j++){
+        if (numbers[j] == 4){
+            arr[j] = 4;
+            arr[j+1] = 5; }}
 
+    int newIndex = 0;
+    for(int k = 0; k < numbers.length; k++){
+        if (arr[k] == 0){
+        arr[k] = others[newIndex];
+        newIndex ++;
+        }
     }
 
+    return arr;
+    /*Plan:
+    *Rules, all numbers except 4's can move
+    * 5 must be moved after 4
+    * Make an array that is same length as numbers
+    * array with all numbers that aren't fours or fives
+    * In the new array, send fours to their original indexes and put a 5 directly after
+    * Cycle through new array, in empty indexes, insert the next number
+    * */
+    }
+/*
     public boolean canBalance(int[] numbers) {
 
     }
