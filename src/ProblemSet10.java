@@ -3,9 +3,9 @@ import java.util.Arrays;
 public class ProblemSet10 {
 
     public static void main(String[] args) {
-        int[] numbers = {1, 1, 1, 1, 1, 7, 1, 3, 1};
+        int[] numbers = {1, 3, 1, 4, 4, 3, 1};
        // int end = 20;
-        System.out.println(maxSpan(numbers));
+        System.out.println(Arrays.toString(fix34(numbers)));
         //(Arrays.toString(
     }
 
@@ -49,9 +49,9 @@ public class ProblemSet10 {
             span = 1;
         } else {
             int currSpan = 0;
-            for (int i = 0; i < numbers.length; i++) {  //for loop that addresses each value in numbers[]
-                for (int j = i; j < numbers.length; j++) { // loop that starts at the current value in numbers[]
-                    if (numbers[i] == numbers[j]) { // if j matches i, the span becomes distance between
+            for (int i = 0; i < numbers.length; i++) {
+                for (int j = i; j < numbers.length; j++) {
+                    if (numbers[i] == numbers[j]) {
                         currSpan = j - i + 1;
                     }
                 }
@@ -62,20 +62,58 @@ public class ProblemSet10 {
             span = max;
         }
         return span;
-    /*Plan:
-    * Make variable for longest length set to 0
-    * For loop for each value from its index to end of the array:
-    * if values match, its span becomes difference between the two indexes
-    * At the end of loop for the variable, the longest span becomes its final span
-    * if this span is longer than the official span, it becomes the new official
-    * At the end, longest span is returned
-    * */
     }
+
+    public static int[] fix34(int[] numbers) {
+   //////////////////////////////////////////////
+    int threeCount = 0;
+    int fourCount = 0;
+    for(int i = 0; i < numbers.length; i++){
+        if(numbers[i] == 3){
+            threeCount ++;
+        } else if(numbers[i] == 4){
+            fourCount ++;
+        } }
+    //////////////////////////////////////////////
+        boolean fourFirst = false;
+    for(int j = 0; j < numbers.length; j++) {
+        if (numbers[j] == 3) {
+            break;
+        }
+        if (numbers[j] == 4) {
+            fourFirst = true;
+        }
+    }
+    //////////////////////////////////////////////
+    boolean consecutive = false;
+    boolean end = false;
+    for(int k = 0; k < numbers.length-1; k++){
+        if(numbers[k] == 3 && numbers[k+1] == 4){
+            consecutive = true;
+            break; } }
+
+    if(numbers[numbers.length-1] == 3){
+                end = true; }
+    //////////////////////////////////////////////
+        if(numbers == null || threeCount != fourCount || fourFirst == true || consecutive == true || end == true){
+            return null; }
+    //////////////////////////////////////////////
+    int[] arr = new int[numbers.length];
+    int arrIndex = 0;
+    for(int l = 0; l < numbers.length; l++){
+        if(numbers[l] != 3 && numbers[l] != 4){
+          arr[arrIndex] = numbers[l];
+          arrIndex ++;
+        } else if(numbers[l] == 3){
+            arr[arrIndex] = numbers[l];
+            arr[arrIndex+1] = 4;
+            arrIndex = arrIndex + 2;
+        } }
+        return arr;
+    }
+
+
 /*
-    public int[] fix34(int[] numbers) {
-
-    }
-
     public int[] fix45(int[] numbers) {
 
     }
