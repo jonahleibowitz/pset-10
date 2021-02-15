@@ -3,9 +3,9 @@ import java.util.Arrays;
 public class ProblemSet10 {
 
     public static void main(String[] args) {
-        int[] numbers = {1, 4, 1, 5, 5, 4, 1};
+        int[] numbers = {10, 10, 9, 9, 2};
        // int end = 20;
-        System.out.println(Arrays.toString(fix45(numbers)));
+        System.out.println(canBalance(numbers));
         //(Arrays.toString(
     }
 
@@ -127,7 +127,6 @@ public class ProblemSet10 {
         return arr;
     }
 
-
     public static int[] fix45(int[] numbers) {
     //////////////////////////////////////////////////
         int fourCount = 0;
@@ -175,11 +174,46 @@ public class ProblemSet10 {
 
     return arr;
     }
-/*
-    public boolean canBalance(int[] numbers) {
+
+    public static boolean canBalance(int[] numbers) { //switch back to boolean
+        if (numbers == null || numbers.length == 0) {
+            return false; //switch back to false
+        }
+
+        int[] front = new int[numbers.length];      //new array front[] of same length as numbers[]
+        boolean equal = false;                      //boolean that checks whether sums are equal
+        int numberSum = 0;
+        int frontSum = 0;                            //integers to hold sums of the two arrays
+
+
+        for(int i = 0; i < numbers.length; i++){    //for loop that cycles through each index of numbers[]
+        frontSum=0;
+        numberSum = 0;
+        front[i] = numbers[i];  //switch back to i                  //value of numbers is assigned to corresponding value in front
+        numbers[i] = 0;                           //the same value in numbers is now 0 (the value has effectively swapped arrays)
+
+        for (int j = 0; j < numbers.length; j++) {        //INSIDE THE FOR LOOP: all values of numbers[] are summed
+            numberSum += numbers[j];
+        }
+        for (int k = 0; k < front.length; k++) {         //INSIDE THE FOR LOOP: all values of front[] are summed
+            frontSum += front[k];
+        }
+        if (frontSum == numberSum) {                  //if the two sides add up to the same amount, equal = true,
+            equal = true;
+            break;                                      // and the loop ends.
+        }
+    }
+    return equal;                               // returns the sum of numbers[] when the loop breaks
+
+    /*Analysis:
+    *Broke after first round of loop
+    * Arrays switched values correctly
+    * Sums should be- Front:2  Numbers: 4
+    * Sums in reality- Front:4  Numbers: 4
+    * */
 
     }
-
+/*
     public boolean linearIn(int[] outer, int[] inner) {
 
     }
