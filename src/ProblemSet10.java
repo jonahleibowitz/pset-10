@@ -1,12 +1,13 @@
 import java.lang.String;
 import java.util.Arrays;
 import java.util.ArrayList;
+
 public class ProblemSet10 {
 
     public static void main(String[] args) {
-        int n = 4;
+        int[] numbers = {1, 2, 3, 3, 2, 1};
        // int[] inner = {2,4,3};
-        System.out.println(Arrays.toString(squareUp(n)));
+        System.out.println(maxMirror(numbers));
         //(Arrays.toString(
     }
 
@@ -295,36 +296,11 @@ public class ProblemSet10 {
         }
         return finalArray;
     }
-/*
+
     public static int maxMirror(int[] numbers) {
-        if(numbers == null){return -1;}
-        int[] front = new int[numbers.length/2];
-        int[] back = new int[numbers.length/2];
-        int backIndex =0;
-    //////////////Making new arrays////////////////////////
-        for(int i = numbers.length-1; i>(numbers.length/2)-1; i--){
-            back[backIndex] = numbers[i];
-            backIndex++;}
+        
+}
 
-        for(int i = 0; i<(numbers.length/2); i++){
-            front[i] = numbers[i];}
-    ///////////////SOLUTION/////////////////////////////////////////////
-        boolean match = false;
-        int spanCount = 0;
-        int firstMatch;
-        for(int i = 0; i < front.length; i++){
-            if(front[i] == back[i]){
-                firstMatch = i;
-                for(int j = i; j < back.length; j++){
-
-
-                }
-            }
-            }
-        }
-
-            return spanCount;
-        }*/
     /* Plan:
     * Look for all numbers that appear twice
     * Split array into half
