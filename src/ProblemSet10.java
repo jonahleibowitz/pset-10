@@ -298,16 +298,9 @@ public class ProblemSet10 {
     }
 
     public static int maxMirror(int[] numbers) {
-        
+
 }
 
-    /* Plan:
-    * Look for all numbers that appear twice
-    * Split array into half
-    * Print second half into new array backwards
-    * use for loop, check if two numbers have the same following numbers, carry this out
-    *find difference of indexes to determine length
-    * */
 
 
     public static int countClumps(int[] numbers) {
