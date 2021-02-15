@@ -4,9 +4,9 @@ import java.util.ArrayList;
 public class ProblemSet10 {
 
     public static void main(String[] args) {
-        int n = 6;
+        int n = 4;
        // int[] inner = {2,4,3};
-        System.out.println(Arrays.toString(seriesUp(n)));
+        System.out.println(Arrays.toString(squareUp(n)));
         //(Arrays.toString(
     }
 
@@ -246,25 +246,39 @@ public class ProblemSet10 {
 
 
     }
-/*
-    public static int[] squareUp(int n) {
-    if (n < 0){
-    return null;
-    }
 
-    /*Plan:
-    * Create array with length n*n
-    *
-    *
-    *
-    *
+    public static int[] squareUp(int n) {
+        if (n < 0) {
+            return null;
+        }
+        ArrayList<Integer> squareList = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            int[] section = new int[n];
+            int addOn = 0;
+            for (int j = n - 1; j >= 0; j--) {
+                if (addOn < i + 1) {
+                    section[j] = addOn + 1;
+                    addOn++;
+                }
+            }
+            for (int k : section) {
+                squareList.add(k);
+            }
+        }
+
+        int squared = n * n;
+        int[] finalArray = new int[squared];
+        for (int i = 0; i < squared; i++) {
+            finalArray[i] = squareList.get(i).intValue();
+        }
+        return finalArray;
     }
-*/
 
     public static int[] seriesUp(int n) {
     if(n<0){
         return null; }
-    
+
     ArrayList<Integer> series = new ArrayList<>();
     for(int i = 0; i < n; i ++){
         for(int j = 1; j < i + 2; j ++){
