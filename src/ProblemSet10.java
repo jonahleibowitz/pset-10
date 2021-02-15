@@ -3,9 +3,9 @@ import java.util.Arrays;
 public class ProblemSet10 {
 
     public static void main(String[] args) {
-        int[] outer = {1,2,3, 4,5};
-        int[] inner = {2,4,3};
-        System.out.println(linearIn(outer, inner));
+        int[] numbers = {2, 2, 1, 1, 1, 1, 1, 2, 2};
+       // int[] inner = {2,4,3};
+        System.out.println(countClumps(numbers));
         //(Arrays.toString(
     }
 
@@ -205,18 +205,18 @@ public class ProblemSet10 {
     return equal;
     }
 
-    public static int linearIn(int[] outer, int[] inner) {
-        int check = -2;
+    public static boolean linearIn(int[] outer, int[] inner) {
+        boolean check = true;
    //////////////////////CHECKS///////////////////////////
     if(outer == null || outer == null || outer.length == 0 || inner.length == 0){
-        return -2;
+        return false;
     }
     for(int i = 1; i< outer.length; i++){
         if (outer[i] < outer[i-1]){
-            check = -1; } }
+            check = false; } }
         for(int i = 1; i < inner.length; i++){
             if (inner[i] < inner[i-1]){
-                check = -1; } }
+                check = false; } }
     //////////////////SOLUTION////////////////////////////
        // int finalJ = 0;
     for(int j = 0; j < outer.length; j++){
@@ -226,7 +226,7 @@ public class ProblemSet10 {
 
             for(int k = 0; k < inner.length; k++){
                 if(inner[k] != outer[j+k]){
-                    check = -1; } }
+                    check = false; } }
             break;
            //if(check == -2){ break;}
         }
@@ -246,21 +246,76 @@ public class ProblemSet10 {
 
     }
 /*
-    public int[] squareUp(int n) {
-
+    public static int[] squareUp(int n) {
+    if (n < 0){
+    return null;
     }
+
+    /*Plan:
+    * Create array with length n*n
+    *
+    *
+    *
+    *
+    }
+
 
     public int[] seriesUp(int n) {
 
     }
 
-    public int maxMirror(int[] numbers) {
+    public static int maxMirror(int[] numbers) {
+        if(numbers == null){return -1;}
+        int[] front = new int[numbers.length/2];
+        int[] back = new int[numbers.length/2];
+        int backIndex =0;
+    //////////////Making new arrays////////////////////////
+        for(int i = numbers.length-1; i>(numbers.length/2)-1; i--){
+            back[backIndex] = numbers[i];
+            backIndex++;}
 
+        for(int i = 0; i<(numbers.length/2); i++){
+            front[i] = numbers[i];}
+    ///////////////SOLUTION/////////////////////////////////////////////
+        boolean match = false;
+        int spanCount = 0;
+        int firstMatch;
+        for(int i = 0; i < front.length; i++){
+            if(front[i] == back[i]){
+                firstMatch = i;
+                for(int j = i; j < back.length; j++){
+
+
+                }
+            }
+            }
+        }
+
+            return spanCount;
+        }*/
+    /* Plan:
+    * Look for all numbers that appear twice
+    * Split array into half
+    * Print second half into new array backwards
+    * use for loop, check if two numbers have the same following numbers, carry this out
+    *find difference of indexes to determine length
+    * */
+
+
+    public static int countClumps(int[] numbers) {
+        if(numbers == null){return -1;}
+        int clumpCount = 0;
+        int currentI = 0;
+    for(int i = 1; i < numbers.length; i++){
+        if(numbers[i] == numbers[i-1]){
+        clumpCount ++;
+        } }
+        for (int j = 2; j < numbers.length; j++)
+            if(numbers[j] == numbers[j-2] && numbers[j] == numbers[j-1]){
+                clumpCount--;
+            }
+        return clumpCount;
     }
 
-    public int countClumps(int[] numbers) {
 
-    }
-
- */
 }
