@@ -1,11 +1,12 @@
 import java.lang.String;
 import java.util.Arrays;
+import java.util.ArrayList;
 public class ProblemSet10 {
 
     public static void main(String[] args) {
-        int[] numbers = {2, 2, 1, 1, 1, 1, 1, 2, 2};
+        int n = 6;
        // int[] inner = {2,4,3};
-        System.out.println(countClumps(numbers));
+        System.out.println(Arrays.toString(seriesUp(n)));
         //(Arrays.toString(
     }
 
@@ -258,12 +259,29 @@ public class ProblemSet10 {
     *
     *
     }
+*/
 
+    public static int[] seriesUp(int n) {
+    if(n<0){
+        return null; }
+    
+    ArrayList<Integer> series = new ArrayList<>();
+    for(int i = 0; i < n; i ++){
+        for(int j = 1; j < i + 2; j ++){
+            series.add(j);}}
 
-    public int[] seriesUp(int n) {
+        int length = 0;
+        for(int i = n; i >0 ; i--) {
+            length += i;
+        }
 
+        int[] finalArray = new int[length];
+        for(int i = 0; i < length; i++){
+        finalArray[i] = series.get(i).intValue();
+        }
+        return finalArray;
     }
-
+/*
     public static int maxMirror(int[] numbers) {
         if(numbers == null){return -1;}
         int[] front = new int[numbers.length/2];
