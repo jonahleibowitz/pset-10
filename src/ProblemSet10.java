@@ -3,9 +3,9 @@ import java.util.Arrays;
 public class ProblemSet10 {
 
     public static void main(String[] args) {
-        int[] numbers = {10, 10, 9, 9, 2};
-       // int end = 20;
-        System.out.println(canBalance(numbers));
+        int[] outer = {1,2,3, 4,5};
+        int[] inner = {2,4,3};
+        System.out.println(linearIn(outer, inner));
         //(Arrays.toString(
     }
 
@@ -175,49 +175,77 @@ public class ProblemSet10 {
     return arr;
     }
 
-    public static boolean canBalance(int[] numbers) { //switch back to boolean
+    public static boolean canBalance(int[] numbers) {
         if (numbers == null || numbers.length == 0) {
-            return false; //switch back to false
+            return false;
         }
 
-        int[] front = new int[numbers.length];      //new array front[] of same length as numbers[]
-        boolean equal = false;                      //boolean that checks whether sums are equal
+        int[] front = new int[numbers.length];
+        boolean equal = false;
         int numberSum = 0;
-        int frontSum = 0;                            //integers to hold sums of the two arrays
+        int frontSum = 0;
 
-
-        for(int i = 0; i < numbers.length; i++){    //for loop that cycles through each index of numbers[]
+        for(int i = 0; i < numbers.length; i++){
         frontSum=0;
         numberSum = 0;
-        front[i] = numbers[i];  //switch back to i                  //value of numbers is assigned to corresponding value in front
-        numbers[i] = 0;                           //the same value in numbers is now 0 (the value has effectively swapped arrays)
+        front[i] = numbers[i];
+        numbers[i] = 0;
 
-        for (int j = 0; j < numbers.length; j++) {        //INSIDE THE FOR LOOP: all values of numbers[] are summed
+        for (int j = 0; j < numbers.length; j++) {
             numberSum += numbers[j];
         }
-        for (int k = 0; k < front.length; k++) {         //INSIDE THE FOR LOOP: all values of front[] are summed
+        for (int k = 0; k < front.length; k++) {
             frontSum += front[k];
         }
-        if (frontSum == numberSum) {                  //if the two sides add up to the same amount, equal = true,
+        if (frontSum == numberSum) {
             equal = true;
-            break;                                      // and the loop ends.
+            break;
         }
     }
-    return equal;                               // returns the sum of numbers[] when the loop breaks
+    return equal;
+    }
 
-    /*Analysis:
-    *Broke after first round of loop
-    * Arrays switched values correctly
-    * Sums should be- Front:2  Numbers: 4
-    * Sums in reality- Front:4  Numbers: 4
+    public static int linearIn(int[] outer, int[] inner) {
+        int check = -2;
+   //////////////////////CHECKS///////////////////////////
+    if(outer == null || outer == null || outer.length == 0 || inner.length == 0){
+        return -2;
+    }
+    for(int i = 1; i< outer.length; i++){
+        if (outer[i] < outer[i-1]){
+            check = -1; } }
+        for(int i = 1; i < inner.length; i++){
+            if (inner[i] < inner[i-1]){
+                check = -1; } }
+    //////////////////SOLUTION////////////////////////////
+       // int finalJ = 0;
+    for(int j = 0; j < outer.length; j++){
+       // check= -1;
+      //  finalJ = j;
+        if(outer[j] == inner[0]){
+
+            for(int k = 0; k < inner.length; k++){
+                if(inner[k] != outer[j+k]){
+                    check = -1; } }
+            break;
+           //if(check == -2){ break;}
+        }
+    } return check;
+
+    /*Plan:
+    *Boolean check is set to true
+    * For loop for Outer:
+    *Look to see when a value matches [0] of inner
+    * Once an outer value matches inner[0], check to see if the next two match,
+    * Continue this search for as many values as inner has
+    * If at any point, they don't match, break. check = false.
+    * Otherwise, allow the loop to finish and check reamins true
+    * Return check
     * */
+
 
     }
 /*
-    public boolean linearIn(int[] outer, int[] inner) {
-
-    }
-
     public int[] squareUp(int n) {
 
     }
