@@ -5,13 +5,12 @@ import java.util.ArrayList;
 public class ProblemSet10 {
 
     public static void main(String[] args) {
-        int[] numbers = {7, 1, 2, 9, 7, 2, 1};
-      //  int[] inner = {2,3, 4};
-        System.out.println(maxMirror(numbers));
+        int[] numbers = {1, 2, 2, 3, 4, 4};
+        System.out.println(countClumps(numbers));
         //(Arrays.toString(
     }
 
-    public static String[] fizzBuzz(int start, int end) {
+    public String[] fizzBuzz(int start, int end) {
     if (start >= end){
         return null;
     }
@@ -40,7 +39,7 @@ public class ProblemSet10 {
         return finalArray;
     }
 
-    public static int maxSpan(int[] numbers) {
+    public int maxSpan(int[] numbers) {
         int span;
         int max = 0;
         if(numbers == null){
@@ -66,7 +65,7 @@ public class ProblemSet10 {
         return span;
     }
 
-    public static int[] fix34(int[] numbers) {
+    public int[] fix34(int[] numbers) {
    //////////////////////////////////////////////
    if(numbers == null){
        return null;
@@ -133,7 +132,7 @@ public class ProblemSet10 {
         return arr;
     }
 
-    public static int[] fix45(int[] numbers) {
+    public int[] fix45(int[] numbers) {
     //////////////////////////////////////////////////
         if(numbers == null){
             return null;
@@ -184,7 +183,7 @@ public class ProblemSet10 {
     return arr;
     }
 
-    public static boolean canBalance(int[] numbers) {
+    public boolean canBalance(int[] numbers) {
         if (numbers == null || numbers.length == 0) {
             return false;
         }
@@ -214,7 +213,7 @@ public class ProblemSet10 {
     return equal;
     }
 
-    public static boolean linearIn(int[] outer, int[] inner) {
+    public boolean linearIn(int[] outer, int[] inner) {
         boolean check = true;
    //////////////////////CHECKS///////////////////////////
     if(outer == null || outer == null || outer.length == 0 || inner.length == 0){
@@ -255,7 +254,7 @@ public class ProblemSet10 {
 
     }
 
-    public static int[] squareUp(int n) {
+    public int[] squareUp(int n) {
         if (n < 0) {
             return null;
         }
@@ -283,7 +282,7 @@ public class ProblemSet10 {
         return finalArray;
     }
 
-    public static int[] seriesUp(int n) {
+    public int[] seriesUp(int n) {
     if(n<0){
         return null; }
 
@@ -304,7 +303,7 @@ public class ProblemSet10 {
         return finalArray;
     }
 
-    public static int maxMirror(int[] numbers) {
+    public int maxMirror(int[] numbers) {
         if(numbers == null){
             return -1;
         }
@@ -326,14 +325,13 @@ public class ProblemSet10 {
         }
         return 0;
 }
-    private static boolean compareReverseLists(int[] first, int[] second){
+    private boolean compareReverseLists(int[] first, int[] second){
         boolean check = true;
         for(int i = 0; i < first.length; i ++){
             if(first[i] != second[second.length - 1 - i]){
                 check = false; } }
         return check; }
-
-    private static int[] makeSublist (int[] arr, int start, int end){
+    private int[] makeSublist (int[] arr, int start, int end){
         if(end < start){
             return null; }
         ArrayList<Integer> temp = new ArrayList<>();
@@ -342,10 +340,7 @@ public class ProblemSet10 {
             return temp.stream().mapToInt(i -> i).toArray();
     }
 
-
-
-
-    public static int countClumps(int[] numbers) {
+    public int countClumps(int[] numbers) {
         if(numbers == null){return -1;}
         int clumpCount = 0;
         int currentI = 0;
