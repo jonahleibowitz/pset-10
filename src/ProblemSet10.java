@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class ProblemSet10 {
 
     public static void main(String[] args) {
-        int[] numbers = {1, 2, 3, 3, 2, 1};
-       // int[] inner = {2,4,3};
+        int[] numbers = {7, 1, 2, 9, 7, 2, 1};
+      //  int[] inner = {2,3, 4};
         System.out.println(maxMirror(numbers));
         //(Arrays.toString(
     }
@@ -68,9 +68,13 @@ public class ProblemSet10 {
 
     public static int[] fix34(int[] numbers) {
    //////////////////////////////////////////////
+   if(numbers == null){
+       return null;
+   }
     int threeCount = 0;
     int fourCount = 0;
     int otherCount = 0;
+
     for(int i = 0; i < numbers.length; i++){
         if(numbers[i] == 3){
             threeCount ++;
@@ -131,6 +135,9 @@ public class ProblemSet10 {
 
     public static int[] fix45(int[] numbers) {
     //////////////////////////////////////////////////
+        if(numbers == null){
+            return null;
+        }
         int fourCount = 0;
         int fiveCount = 0;
         int otherCount = 0;
@@ -298,8 +305,43 @@ public class ProblemSet10 {
     }
 
     public static int maxMirror(int[] numbers) {
+        if(numbers == null){
+            return -1;
+        }
+        for (int i = numbers.length - 1; i > 0; i--){
+            ArrayList<int[]> original = new ArrayList<>();
+            for(int j = 0; j < numbers.length; j++){
+                try {
+             int[] sublist = makeSublist(numbers, j, j + i);
+            original.add(sublist);
+                } catch (ArrayIndexOutOfBoundsException e){
+                    break; } }
 
+            while(original.size() > 0){
+                for(int k = 1; k < original.size(); k++){
+                    if(compareReverseLists(original.get(0), original.get(k))){
+                        return i; } }
+                original.remove(0);
+            }
+        }
+        return 0;
 }
+    private static boolean compareReverseLists(int[] first, int[] second){
+        boolean check = true;
+        for(int i = 0; i < first.length; i ++){
+            if(first[i] != second[second.length - 1 - i]){
+                check = false; } }
+        return check; }
+
+    private static int[] makeSublist (int[] arr, int start, int end){
+        if(end < start){
+            return null; }
+        ArrayList<Integer> temp = new ArrayList<>();
+        for(int i = start; i < end; i++){
+            temp.add(arr[i]); }
+            return temp.stream().mapToInt(i -> i).toArray();
+    }
+
 
 
 
@@ -317,6 +359,4 @@ public class ProblemSet10 {
             }
         return clumpCount;
     }
-
-
 }
